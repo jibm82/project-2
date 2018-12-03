@@ -1,0 +1,116 @@
+/* Generals*/
+body {
+    width: 100%;
+    font-family: 'Titillium Web', sans-serif !important;
+}
+
+h6 {
+    font-size: 14px;
+}
+
+h5 {
+    font-size: 16px;
+}
+
+h4 {
+    font-size: 18;
+    font-weight: 700;
+}
+
+h3 {
+    font-size: 22;
+    font-weight: 700;
+}
+
+
+a {
+    color: white !important;
+    font-weight: 600;
+}
+
+a:hover {
+    color: #e00314 !important;
+}
+
+/*Navbar - bloodmap*/
+#mainNav {
+    background: #040919 !important;
+    color: white !important;
+}
+
+.navbar-toggler {
+    border-color: #e00314 !important;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#e00314' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E") !important;
+}
+
+/*Content - bloodmap*/
+.jumbotron {
+    padding-top: 25rem;
+    padding-bottom: calc(10rem - 56px);
+    background-image: url("../img/bloodmap-background-3.jpg");
+    background-position: center bottom;
+    background-size: cover;
+    margin-bottom: 0;
+}
+
+.jumbotron-register {
+    padding-top: 25rem;
+    padding-bottom: calc(10rem - 56px);
+    background-image: url("../img/bloodmap-background-1.jpg");
+    background-position: center top;
+    background-size: cover;
+    margin-bottom: 0;
+}
+
+/*section - services*/
+.services {
+    padding: 2em;
+}
+#main-btn {
+    font-weight: 400;
+    padding: 0.45em 1.5em;
+    background-color: #e00314;
+    color: white;
+    align-content: center;
+    cursor: pointer;
+    border: none;
+    border-radius: 9px;
+    margin: 10px;
+}
+
+#main-btn:hover {
+    background-color: #ad0311;
+    color: white !important;
+}
+
+/*section - counter*/
+.counter {
+    background-color: #ebeaeb;
+    width: 100%;
+    padding: 1em;
+}
+
+.registration-form {
+    padding-bottom: 10;
+}
+.container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+}
+#googleMap {
+    padding-left: 0;
+    padding-right: 0;
+    margin-bottom: 0;
+}
+
+/*Footer - bloodmap*/
+#footer {
+    background-color: #040919;
+    color: white;
+    width: 100%;
+    padding: 2em;
+    bottom: 0;
+}
