@@ -1,4 +1,4 @@
-module.exports = function (sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
   var DonorProfile = sequelize.define("DonorProfile", {
     address: DataTypes.STRING,
     privShowName: DataTypes.BOOLEAN,
@@ -9,7 +9,7 @@ module.exports = function (sequelize, DataTypes) {
     }
   });
 
-  DonorProfile.associate = function (models) {
+  DonorProfile.associate = function(models) {
     DonorProfile.belongsTo(models.User);
     DonorProfile.belongsTo(models.BloodType);
   };

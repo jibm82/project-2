@@ -1,11 +1,12 @@
-module.exports = function (sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
   var BloodType = sequelize.define("BloodType", {
     name: {
-      type: DataTypes.STRING, unique: true
+      type: DataTypes.STRING,
+      unique: true
     }
   });
 
-  BloodType.associate = function (models) {
+  BloodType.associate = function(models) {
     BloodType.hasMany(models.DonorProfile);
   };
 
