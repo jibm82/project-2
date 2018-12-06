@@ -12,19 +12,19 @@ module.exports = function(app) {
         examples: [
           {
             id: 001,
-            text: Valeria
+            text: "Valeria"
           },
           {
             id: 002,
-            text: Jorge
+            text: "Jorge"
           },
           {
             id: 003,
-            text: Pablo
+            text: "Pablo"
           },
           {
             id: 004,
-            text: Eduardo
+            text: "Eduardo"
           }
         ]
       });
