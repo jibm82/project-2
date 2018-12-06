@@ -22,6 +22,9 @@ h3 {
     font-weight: 700;
 }
 
+h2 {
+    font-size: 22;
+}
 
 a {
     color: white !important;
@@ -113,4 +116,14 @@ a:hover {
     width: 100%;
     padding: 2em;
     bottom: 0;
+}
+
+/*404*/
+#page-404 {
+    padding-top: 25rem;
+    padding-bottom: calc(10rem - 56px);
+    background-image: url("../img/404.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-bottom: 0;
 }
