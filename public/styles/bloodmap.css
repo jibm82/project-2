@@ -41,6 +41,11 @@ h2 {
   color: #e00314;
 }
 
+li {
+  padding:10px !important;
+  text-transform: uppercase;
+}
+
 .navbar-toggler {
   border-color: #e00314 !important;
 }
