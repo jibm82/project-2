@@ -3,47 +3,39 @@ var db = require("../models");
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    db.User.findAll({}).then(function(dbbloodmap) {
-      console.log("___________dbbloodmap____________");
-      console.log(dbbloodmap.length);
-      console.log("___________dbbloodmap____________");
+    db.User.count().then(function(usersCount) {
       res.render("index", {
-        msg: "Welcome!",
-        examples: [
-          {
-            id: 001,
-            text: "Valeria"
-          },
-          {
-            id: 002,
-            text: "Jorge"
-          },
-          {
-            id: 003,
-            text: "Pablo"
-          },
-          {
-            id: 004,
-            text: "Eduardo"
-          }
-        ]
+        user: req.user,
+        usersCount: usersCount
       });
     });
   });
 
-  // Load example page and pass in an example by id
-  app.get("/bloodtype/:id", function(req, res) {
-    db.Example.findOne({ where: { id: req.params.id } }).then(function(
-      dbbloodmap
-    ) {
-      res.render("bloodtype", {
-        example: dbbloodmap
+  app.get("/login", function(req, res) {
+    if (req.user) {
+      res.redirect("/");
+    } else {
+      res.render("login");
+    }
+  });
+
+  app.get("/logout", function(req, res) {
+    req.logout();
+    res.redirect("/");
+  });
+
+  app.get("/signup", function(req, res) {
+    if (req.user) {
+      res.redirect("/");
+    } else {
+      db.BloodType.findAll({}).then(function(dbBloodmap) {
+        res.render("signup", { bloodTypes: dbBloodmap });
       });
-    });
+    }
   });
 
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
-    res.render("404");
+    res.render("404", { layout: "minimal" });
   });
 };

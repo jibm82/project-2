@@ -1,21 +1,25 @@
 require("dotenv").config();
-var express = require("express");
-var app = express();
 var PORT = process.env.PORT || 3000;
+
 var cookieParser = require("cookie-parser");
+var db = require("./models");
+var exphbs = require("express-handlebars");
+var express = require("express");
+var expressValidator = require("express-validator");
 var flash = require("connect-flash");
 var session = require("express-session");
 var passport = require("passport");
-var db = require("./models");
-var exphbs = require("express-handlebars");
+
+var app = express();
 
 // Configure passport
 require("./config/passport")(passport);
 
 // Middleware
-app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(expressValidator());
+app.use(cookieParser());
 app.use(express.static("public"));
 
 // required for passport
