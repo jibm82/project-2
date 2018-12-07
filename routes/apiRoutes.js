@@ -1,4 +1,5 @@
 var db = require("../models");
+var jobs = require("../tools/jobs");
 
 module.exports = function(app, passport) {
   // Get all bloodtypes
@@ -57,4 +58,20 @@ module.exports = function(app, passport) {
       failureFlash: true // allow flash messages
     })
   );
+
+  app.get("/api/send-notifications", function(req, res) {
+    db.User.findAll({}).then(function(users) {
+      users.forEach(function(user, index) {
+        jobs
+          .create("sendNotification", {
+            email: user.email
+          })
+          .delay(1000 * index)
+          .events(false)
+          .save();
+      });
+
+      res.json({ result: true, deliveries: users.length });
+    });
+  });
 };
