@@ -25,7 +25,15 @@ function buildDonor(req) {
   );
 }
 
-function buildRequester() {}
+function buildRequester(req) {
+  // TODO include request info
+  return db.User.build({
+    name: req.body.name,
+    email: req.body.email,
+    password: db.User.generateHash(req.body.password),
+    phone: req.body.phone
+  });
+}
 
 // expose this function to our app using module.exports
 module.exports = function(passport) {
@@ -73,6 +81,8 @@ module.exports = function(passport) {
 
               if (req.body.donor) {
                 newUser = buildDonor(req);
+              } else {
+                newUser = buildRequester(req);
               }
 
               // save the user
@@ -109,22 +119,28 @@ module.exports = function(passport) {
           .then(function(user) {
             // if no user is found, return the message
             if (!user) {
-              console.log("No user found");
-              return done(
-                null,
-                false,
-                req.flash("loginMessage", "No user found.")
-              );
+              return done(null, false, {
+                result: false,
+                errors: [
+                  {
+                    param: "email",
+                    msg: "Email is not registered"
+                  }
+                ]
+              });
             }
 
             // if the user is found but the password is wrong
             if (!user.validPassword(password)) {
-              console.log("Wrong password");
-              return done(
-                null,
-                false,
-                req.flash("loginMessage", "Oops! Wrong password.")
-              );
+              return done(null, false, {
+                result: false,
+                errors: [
+                  {
+                    param: "password",
+                    msg: "Your password is incorrect"
+                  }
+                ]
+              });
             }
 
             // all is well, return successful user
