@@ -4,11 +4,8 @@ module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
     db.User.findAll({}).then(function(dbbloodmap) {
-      console.log("___________dbbloodmap____________");
-      console.log(dbbloodmap.length);
-      console.log("___________dbbloodmap____________");
       res.render("index", {
-        msg: "Welcome!",
+        user: req.user,
         examples: [
           {
             id: 001,
@@ -31,19 +28,31 @@ module.exports = function(app) {
     });
   });
 
-  // Load example page and pass in an example by id
-  app.get("/bloodtype/:id", function(req, res) {
-    db.Example.findOne({ where: { id: req.params.id } }).then(function(
-      dbbloodmap
-    ) {
-      res.render("bloodtype", {
-        example: dbbloodmap
+  app.get("/login", function(req, res) {
+    if (req.user) {
+      res.redirect("/");
+    } else {
+      res.render("login");
+    }
+  });
+
+  app.get("/logout", function(req, res) {
+    req.logout();
+    res.redirect("/");
+  });
+
+  app.get("/signup", function(req, res) {
+    if (req.user) {
+      res.redirect("/");
+    } else {
+      db.BloodType.findAll({}).then(function(dbBloodmap) {
+        res.render("signup", { bloodTypes: dbBloodmap });
       });
-    });
+    }
   });
 
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
-    res.render("404");
+    res.render("404", { layout: "minimal" });
   });
 };

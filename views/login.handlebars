@@ -1,0 +1,67 @@
+<!--Main section-->
+<section class="registration-form">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h3 class="section-heading text-center">LOGIN</h3>
+                <form id="login-form" action="/api/login">
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input id="email" name="email" placeholder="Email" type="email" required="required" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input id="password" name="password" placeholder="Password" type="password" required="required"
+                                class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <input type="hidden" name="donor" value="true">
+                            <button type="submit" class="btn btn-danger" id="main-btn" data-toggle="button"
+                                aria-pressed="false" autocomplete="off">LOGIN</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="/js/bootstrap3-typeahead.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $("#login-form").submit(function (e) {
+            e.preventDefault();
+            $.ajax({
+                url: "/api/login",
+                data: $(this).serialize(),
+                method: "POST",
+                success: function ({ result, errors }) {
+                    if (result) {
+                        window.location = "/";
+                    } else {
+                        showErrors(errors);
+                    }
+                }
+            })
+        });
+
+        function showErrors(errors) {
+            var errorsHtml = "";
+
+            errors.forEach(function (error) {
+                errorsHtml = `<li>${error.msg}</li>`
+            });
+
+            Swal({
+                title: 'Error',
+                type: 'error',
+                html: `<ul>${errorsHtml}</ul>`
+            })
+        }
+    });
+</script>
