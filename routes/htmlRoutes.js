@@ -3,27 +3,10 @@ var db = require("../models");
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    db.User.findAll({}).then(function(dbbloodmap) {
+    db.User.count().then(function(usersCount) {
       res.render("index", {
         user: req.user,
-        examples: [
-          {
-            id: 001,
-            text: "Valeria"
-          },
-          {
-            id: 002,
-            text: "Jorge"
-          },
-          {
-            id: 003,
-            text: "Pablo"
-          },
-          {
-            id: 004,
-            text: "Eduardo"
-          }
-        ]
+        usersCount: usersCount
       });
     });
   });
