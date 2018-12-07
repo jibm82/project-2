@@ -20,6 +20,10 @@ console.log(process.env.REDISTOGO_URL);
 
 var jobs = kue.createQueue();
 
+jobs.on("error", function(err) {
+  console.log(err);
+});
+
 // see https://github.com/learnBoost/kue/ for how to do more than one job at a time
 jobs.process("sendNotification", function(job, done) {
   console.log("Sending email to " + job.data.email);
