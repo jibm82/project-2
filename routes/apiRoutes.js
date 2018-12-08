@@ -76,4 +76,30 @@ module.exports = function(app, passport) {
       res.json(results);
     });
   });
+
+  app.put("/api/update-address", function(req, res, next) {
+    if(req.user){
+      var location = {
+        type: "Point",
+        coordinates: [req.body.long, req.body.lat]
+      };
+      db.DonorProfile.update(
+        {
+          address: req.body.address,
+          location: location
+        },
+        {
+          where:{
+            UserId: req.user.id
+          }
+        }
+      )
+      .then(function(){
+        res.json({result: true});
+      });
+    }
+    else{
+      res.json({result: false});
+    }
+  });
 };
