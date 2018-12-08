@@ -34,6 +34,16 @@ module.exports = function(app) {
     }
   });
 
+  app.get("/bloodrequest", function(req, res) {
+    if (req.user) {
+      res.redirect("/");
+    } else {
+      db.BloodType.findAll({}).then(function(dbBloodmap) {
+        res.render("bloodrequest", { bloodTypes: dbBloodmap });
+      });
+    }
+  });
+
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404", { layout: "minimal" });

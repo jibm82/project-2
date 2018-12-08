@@ -1,8 +1,11 @@
 module.exports = function(sequelize, DataTypes) {
   var BloodRequest = sequelize.define("BloodRequest", {
-    name: DataTypes.STRING,
+    patientName: DataTypes.STRING,
     address: DataTypes.STRING,
-    donationType: DataTypes.STRING
+    donationType: DataTypes.STRING,
+    location: {
+      type: DataTypes.GEOMETRY("POINT", 4326)
+    }
   });
 
   BloodRequest.associate = function(models) {

@@ -1,0 +1,186 @@
+<!--Hero image-->
+<div class="jumbotron-register text-center">
+    <div class="container">
+    </div>
+</div>
+
+<!--Main section-->
+<section class="registration-form">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h3 class="section-heading text-center">PATIENT DATA</h3>
+                <form id="request" action="/api/signup">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input name="patientName" placeholder="Full name" type="text" required="required" class="form-control">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <select name="BloodTypeId" placeholder="Blood Type" type="text" required="required" class="form-control">
+                                <option value="">Blood type</option>
+                                {{#each bloodTypes}}
+                                <option value="{{id}}">{{name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <select name="donationType" placeholder="Donation Type" required="required" class="form-control">
+                                <option>Donation Type</option>
+                                <option value="blood">Blood Donation</option>
+                                <option value="platelets">Platelets Donation</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <input id="address" name="address" placeholder="Address (street and number)" type="text"
+                                required="required" class="form-control" autocomplete="address">
+                            <input type="hidden" id="latitude" name="latitude">
+                            <input type="hidden" id="longitude" name="longitude">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h3 class="section-heading text-center">WHO TO CONTACT</h3>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <input name="name" placeholder="Full Name" type="text" required="required" class="form-control">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <input name="phone" placeholder="Phone Number" type="text" required="required"
+                                        class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-7">
+                                    <input name="email" placeholder="Email" type="email" required="required" class="form-control">
+                                </div>
+                                <div class="form-group col-md-5">
+                                    <input name="password" placeholder="Password" type="password" required="required"
+                                        class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col">
+                                    <button type="submit" class="btn btn-danger" id="main-btn" data-toggle="button"
+                                        aria-pressed="false" autocomplete="off">CREATE CAMPAIGN</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--Javascript para el mapa - es mi API-->
+<section class="map">
+    <div class="container-fluid">
+        <div id="googleMap" style="width:100%;height:400px;"></div>
+        <script>
+            var map = undefined;
+            var marker = undefined;
+
+            function initializeMap() {
+                var mapProp = {
+                    center: new google.maps.LatLng(19.432879, -99.133274),
+                    zoom: 12,
+                };
+
+                map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+
+                marker = new google.maps.Marker({
+                    position: map.getCenter(),
+                    map: map,
+                    title: 'Click to zoom'
+                });
+
+                map.addListener('center_changed', function () {
+
+                    relocateMarker(latitude, longitude);
+                });
+
+            }
+
+            function relocateMarker() {
+                var center = map.getCenter();
+                var latitude = center.lat();
+                var longitude = center.lng();
+
+                $("#latitude").val(latitude);
+                $("#longitude").val(longitude);
+                marker.setPosition(map.getCenter());
+            }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANoloexssJib4VhTPthQlqU7p4zwq5-b8&callback=initializeMap"></script>
+    </div>
+</section>
+<script src="/js/bootstrap3-typeahead.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#address').typeahead({
+            matcher: function () {
+                return true;
+            },
+            updater: function (item) {
+                map.setCenter(new google.maps.LatLng(item.latitude, item.longitude));
+                return item.name;
+            },
+            source: function (address, displayOptions) {
+                if (address.length > 5) {
+                    $.ajax({
+                        url: "/api/geocode",
+                        data: {
+                            address: address
+                        },
+                        dataType: "json",
+                        type: "POST",
+                        success: function (data) {
+                            var results = $.map(data, function (item) {
+
+                                return {
+                                    latitude: item.geometry.location.lat,
+                                    longitude: item.geometry.location.lng,
+                                    name: item.formatted_address
+                                };
+                            });
+
+                            displayOptions(results);
+                        }
+                    });
+                }
+            }
+        });
+
+        $("#request").submit(function (e) {
+            e.preventDefault();
+            $.ajax({
+                url: "/api/signup",
+                data: $(this).serialize(),
+                method: "POST",
+                success: function ({ result, errors }) {
+                    if (result) {
+                        window.location = "/";
+                    } else {
+                        showErrors(errors);
+                    }
+                }
+            })
+        });
+
+        function showErrors(errors) {
+            var errorsHtml = "";
+
+            errors.forEach(function (error) {
+                errorsHtml = `<li>${error.msg}</li>`
+            });
+
+            Swal({
+                title: 'Error',
+                type: 'error',
+                html: `<ul>${errorsHtml}</ul>`
+            })
+        }
+    });
+</script>

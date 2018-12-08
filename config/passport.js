@@ -26,12 +26,24 @@ function buildDonor(req) {
 }
 
 function buildRequester(req) {
-  // TODO include request info
+  var location = {
+    type: "Point",
+    coordinates: [req.body.longitude, req.body.latitude]
+  };
   return db.User.build({
     name: req.body.name,
     email: req.body.email,
     password: db.User.generateHash(req.body.password),
-    phone: req.body.phone
+    phone: req.body.phone,
+    BloodRequest: [
+      {
+        patientName: req.body.patientName,
+        donationType: req.body.donationType,
+        address: req.body.address,
+        BloodTypeId: req.body.BloodTypeId,
+        location: location
+      }
+    ]
   });
 }
 
