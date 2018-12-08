@@ -30,10 +30,13 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse">
-        <ul class="nav navbar-nav ml-auto">
+        <ul class="nav navbar-nav ml-auto" id="navbar-menu">
           {{#if user}}
           <li class="active">
             {{{user.name}}}
+          </li>
+          <li class="active">
+          <p>|</p>
           </li>
           <li>
             <a href="/logout">LOGOUT</a>
@@ -49,28 +52,26 @@
     </div>
   </nav>
 
-  <!--Hero image-->
-  <div class="jumbotron text-center">
-    <div class="container">
-    </div>
-  </div>
-
   {{{body}}}
 
   <footer class="footer" id="footer">
     <div class="container">
       <div class="row">
-        <a class="col-md-5" href="index.html">
-          <img src="/img/bloodmap.png" class="logo-top" width="250">
+        <a class="col-md-4" href="/">
+          <img src="/img/bloodmap.png" class="logo-bottom" width="250">
         </a><br>
-        <div class="col-md-4">
+        <div class="col-md-6">
           <h5 class="section-heading">PRIVACY POLICY</h5>
-          <h6 class="text-left" id="footer-text">Los datos ingresados en la página son recopilados por
-            Bloodmap para fines estadísticos y para prestar el servicio.
-            La publicación de los mismos corre a cargo del usuario y Bloodmap no se hace responsable de
-            este uso.</h6>
+          <h6 class="text-left" id="footer-text">This application collects Personal Data from the Users for statistical purposes and to deliver
+            our service. Always be careful and responsible regarding your Personal Data. We are not responsible for the use by others of any
+            information which you provide.</h6>
+            <a href="https://www.iubenda.com/privacy-policy/65843167" id= "privacy-policy" class="iubenda-black iubenda-embed" title="Privacy Policy">Privacy Policy</a>
+            <script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"),
+            tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);};
+            if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}
+            else{w.onload = loader;}})(window, document);</script>
         </div><br>
-        <div class="col-md-3">
+        <div class="col-md-2">
           <h5 class="section-heading">CONTACT</h5>
           <h6><a href="#">hello@bloodmap.info</a></h6>
         </div>

@@ -28,7 +28,7 @@ h2 {
 
 /*Navbar - bloodmap*/
 #mainNav {
-  background: #040919;
+  background: black;
   color: #fff;
 }
 
@@ -39,6 +39,11 @@ h2 {
 
 #mainNav a:hover {
   color: #e00314;
+}
+
+li {
+  padding:10px !important;
+  text-transform: uppercase;
 }
 
 .navbar-toggler {
@@ -60,6 +65,15 @@ h2 {
 }
 
 .jumbotron-register {
+  padding-top: 25rem;
+  padding-bottom: calc(10rem - 56px);
+  background-image: url("../img/bloodmap-background-1.jpg");
+  background-position: center top;
+  background-size: cover;
+  margin-bottom: 0;
+}
+
+.jumbotron-login {
   padding-top: 25rem;
   padding-bottom: calc(10rem - 56px);
   background-image: url("../img/bloodmap-background-1.jpg");
@@ -97,12 +111,15 @@ h2 {
 }
 
 .registration-form {
-  padding-bottom: 10;
+  padding-top: 2em;
+  padding-bottom: 2em;
 }
+
 .container-fluid {
   padding-left: 0;
   padding-right: 0;
 }
+
 #googleMap {
   padding-left: 0;
   padding-right: 0;
@@ -111,7 +128,7 @@ h2 {
 
 /*Footer - bloodmap*/
 footer {
-  background-color: #040919;
+  background-color:black;
   color: white;
   width: 100%;
   padding: 2em;
@@ -124,6 +141,19 @@ footer a {
 
 footer a:hover {
   color: #e00314;
+}
+
+.section-heading {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#logo-bottom {
+  padding-bottom: 10px;
+}
+#privacy-policy {
+  background: none !important;
+  border-color: #e00314 !important;
 }
 
 /*404*/
