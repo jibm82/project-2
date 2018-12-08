@@ -62,7 +62,8 @@ module.exports = function(app, passport) {
           if (err) {
             return next(err);
           }
-          if (req.body.donor === null) {
+
+          if (req.body.donor === undefined) {
             sendRequestNotifications(user.BloodRequests[0].id);
           }
           return res.json({ result: true });
