@@ -30,21 +30,25 @@ function buildRequester(req) {
     type: "Point",
     coordinates: [req.body.longitude, req.body.latitude]
   };
-  return db.User.build({
-    name: req.body.name,
-    email: req.body.email,
-    password: db.User.generateHash(req.body.password),
-    phone: req.body.phone,
-    BloodRequest: [
-      {
-        patientName: req.body.patientName,
-        donationType: req.body.donationType,
-        address: req.body.address,
-        BloodTypeId: req.body.BloodTypeId,
-        location: location
-      }
-    ]
-  });
+
+  return db.User.build(
+    {
+      name: req.body.name,
+      email: req.body.email,
+      password: db.User.generateHash(req.body.password),
+      phone: req.body.phone,
+      BloodRequests: [
+        {
+          patientName: req.body.patientName,
+          donationType: req.body.donationType,
+          address: req.body.address,
+          BloodTypeId: req.body.BloodTypeId,
+          location: location
+        }
+      ]
+    },
+    { include: [db.BloodRequest] }
+  );
 }
 
 // expose this function to our app using module.exports
