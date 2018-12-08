@@ -25,6 +25,7 @@ module.exports = function(sequelize, DataTypes) {
 
   User.associate = function(models) {
     User.hasOne(models.DonorProfile, { onDelete: "cascade" });
+    User.hasMany(models.BloodRequest, { onDelete: "cascade" });
   };
 
   User.generateHash = function(password) {

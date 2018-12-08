@@ -1,6 +1,7 @@
 require("dotenv").config();
 var kue = require("kue");
 var mailer = require("./tools/mailer");
+var db = require("./models");
 
 // make sure we use the Heroku Redis To Go URL
 // (put REDISTOGO_URL=redis://localhost:6379 in .env for local testing)
@@ -15,9 +16,17 @@ jobs.on("error", function(err) {
 
 // see https://github.com/learnBoost/kue/ for how to do more than one job at a time
 jobs.process("sendNotification", function(job, done) {
-  console.log("Sending email to " + job.data.email);
-  mailer.sampleEmail(job.data.email).catch(function(err) {
-    console.log(err);
+  console.log("Sending email to user" + job.data.userId);
+  db.BloodRequest.findById(job.data.bloodRequestId).then(function(
+    bloodRequest
+  ) {
+    if (bloodRequest) {
+      db.User.findById(job.data.userId).then(function(user) {
+        mailer.newRequest(bloodRequest, user).catch(function(err) {
+          console.log(err);
+        });
+        done();
+      });
+    }
   });
-  done();
 });

@@ -10,22 +10,29 @@
         <div class="row">
             <div class="col-md-8 mx-auto text-center">
                 <h3 class="section-heading">WHAT IS BLOODMAP?</h3>
-                <p>Bloodmap is a country-wide database where patients that are urgently looking for blood, as well as active blood donating
-                campaigns can have access to our data and connect with the registered blood donors in their vicinity.</p><br>
+                <p>Bloodmap is a country-wide database where patients that are urgently looking for blood, as well as
+                    active blood donating
+                    campaigns can have access to our data and connect with the registered blood donors in their
+                    vicinity.</p><br>
                 <h3 class="section-heading">HOW DOES IS IT WORK?</h3>
-                <p>Active <strong>blood donors</strong> have to register and create a profile with some basic information. Based on the User's 
-                geolocation, a map with the information where active donation campaigns and patients that are currently looking for blood will
-                be displayed.</p>
-                <p>A blood <strong>donation campaign</strong> can be set up by simply adding up the patient/campaign information.
-                Bloodmap will take in the address where blood is needed as well as the specific blood type(s) requested and cross-check this
-                information with your database. After that is done, only matching donors will receive an email alert with the details of the campaign.</p>
+                <p>Active <strong>blood donors</strong> have to register and create a profile with some basic
+                    information. Based on the User's
+                    geolocation, a map with the information where active donation campaigns and patients that are
+                    currently looking for blood will
+                    be displayed.</p>
+                <p>A blood <strong>donation campaign</strong> can be set up by simply adding up the patient/campaign
+                    information.
+                    Bloodmap will take in the address where blood is needed as well as the specific blood type(s)
+                    requested and cross-check this
+                    information with your database. After that is done, only matching donors will receive an email
+                    alert with the details of the campaign.</p>
                 <div>
                     <a class="btn btn-danger" href="/signup" id="main-btn" data-toggle="button" aria-pressed="false"
                         autocomplete="off">
                         BLOOD DONORS
                     </a>
-                    <a class="btn btn-danger" href="../views/database.html" id="main-btn" data-toggle="button"
-                        aria-pressed="false" autocomplete="off">DONATION CAMPAIGN</a>
+                    <a class="btn btn-danger" href="/bloodrequest" id="main-btn" data-toggle="button" aria-pressed="false"
+                        autocomplete="off">DONATION CAMPAIGN</a>
                 </div>
             </div>
         </div>
@@ -37,11 +44,11 @@
         <div class="row">
             <div class="col-md-6">
                 <h4 class="section-heading">REGISTERED DONORS:</h4>
-                <h5 class="total-users">{{usersCount}}</h5>
+                <h5 class="total-users">{{DonorProfileCount}}</h5>
             </div>
             <div class="col-md-6">
                 <h4 class="section-heading">ACTIVE CAMPAIGNS:</h4>
-                <h5 class="total-campaigns">{{usersCount}}</h5>
+                <h5 class="total-campaigns">{{BloodRequestCount}}</h5>
             </div>
         </div>
     </div>
