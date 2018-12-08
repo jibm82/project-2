@@ -154,11 +154,16 @@
 
             $("#btnUpdateAddress").on('click',function(){
                 var address = $("#address").val().trim();
+                var lat = $("#latitude").val().trim();
+                var long = $("#longitude").val().trim();
                 $.ajax({
                 method: "PUT",
-                url: "/api/updateAddress",
-                data: address
-                })
+                url: "/api/update-address",
+                data: {
+                    address:address,
+                    lat: lat,
+                    long: long
+                }})
                 .then(function() {
                     window.location.href = "/profile";
                 });
