@@ -77,8 +77,8 @@ module.exports = function(app, passport) {
     });
   });
 
-  app.put("/api/update-address", function(req, res, next) {
-    if(req.user){
+  app.put("/api/update-address", function(req, res) {
+    if (req.user) {
       var location = {
         type: "Point",
         coordinates: [req.body.long, req.body.lat]
@@ -89,17 +89,15 @@ module.exports = function(app, passport) {
           location: location
         },
         {
-          where:{
+          where: {
             UserId: req.user.id
           }
         }
-      )
-      .then(function(){
-        res.json({result: true});
+      ).then(function() {
+        res.json({ result: true });
       });
-    }
-    else{
-      res.json({result: false});
+    } else {
+      res.json({ result: false });
     }
   });
 };
