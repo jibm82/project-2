@@ -1,61 +1,43 @@
     <!--Main section-->
+
     <section class="profile-info">
-        <div class="container">
-            <div class="row justify-content-around">
+        <div class="container py-3">
+            <div class="row justify-content-around py-5">
                 <div class="col-md-9 col-12">
-                    <h3 class="section-heading text-left"> {{userdata.name}} </h3>
-                    <p class="profile-address" id="currentAddress"><i class="fa fa-map-marker"></i> {{userdata.address}} <button class="btn-outline-dark btnedit" id="btnEditAddress" data-toggle="modal" data-target="#EditAddress"><i class="fa fa-pencil"></i></button></p>
-                    <p class="profile-address" id="currentEmail">{{userdata.email}}</p>
+                    <h3 class="section-heading text-left"> {{user.name}} </h3>
+                    <p class="profile-address" id="currentAddress"><i class="fa fa-map-marker"></i> {{user.DonorProfile.address}} <button class="btn-outline-dark btnedit" id="btnEditAddress" data-toggle="modal" data-target="#EditAddress"><i class="fa fa-pencil"></i></button></p>
+                    <p class="profile-address" id="currentEmail">{{user.email}}</p>
                     <h4 class="section-heading text-left"> Info </h4>
                     <ul class="nav nav-tabs" id="profileInfo" role="tablist">
                         <li class="nav-item">
-                          <a class="nav-link profiletab active" id="messages-tab" data-toggle="tab" href="#messages" role="tab" aria-controls="messages" aria-selected="true"><i class="fa "></i> Messages</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link profiletab" id="donor-tab" data-toggle="tab" href="#donor" role="tab" aria-controls="donor-info" aria-selected="false"><i class="fa "></i> Donor</a>
+                          <a class="nav-link profiletab active" id="donor-tab" data-toggle="tab" href="#donor" role="tab" aria-controls="donor-info" aria-selected="false"><i class="fa "></i> Donor</a>
                         </li>
                         <li class="nav-item">
                           <a class="nav-link profiletab" id="request-tab" data-toggle="tab" href="#request" role="tab" aria-controls="requests-info" aria-selected="false"><i class="fa "></i> Requests</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link profiletab" id="settings-tab" data-toggle="tab" href="#settings" role="tab" aria-controls="settings" aria-selected="false"><i class="fa "></i> Settings</a>
-                        </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="messages" role="tabpanel" aria-labelledby="messages-tab">
-                            <div class="row">
-                                <div class="col-12">
-                                    
-                                    <div class="card bg-light my-1">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Bloodmap <small class="card-subtitle mb-2 text-muted">06/12/2018 8:51pm</small></h5>
-                                            <p class="card-text">Welcome to bloodmap! Use our navigation options to browse your donor profile, make a blood request, or adjust your privacy and notification settings. Thank you for your time! - The bloodmap team.</p>
-                                            <a href="#" class="btn btn-danger btnmessage" id=""><i class="fa fa-info-circle"></i> Register as donor</a>
-                                            <a href="#" class="btn btn-danger btnmessage" id=""><i class="fa fa-info-circle"></i> Make a request</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade show" id="donor" role="tabpanel" aria-labelledby="donor-tab">
+                        <div class="tab-pane fade show active" id="donor" role="tabpanel" aria-labelledby="donor-tab">
                             <div class="row justify-content-center py-1">
                                 <div class="col-8 col-md-4 bg-dark my-2 text-center">
                                     <p class="py-0 text-white my-auto">Blood Type</p>
                                 </div>
                                 <div class="col-4 col-md-3 bg-light my-2 text-center">
-                                    <p class="py-0 my-auto">{{userdata}}<button class="btn-outline-dark btnedit"><i class="fa fa-pencil"></i></button></p>
+                                    <p class="py-0 my-auto">{{user.DonorProfile.BloodType.name}}<button class="btn-outline-dark btnedit"></button></p>
                                 </div>
                             </div>
                             <div class="row py-1">
                                 <div class="col">
                                     <h5>Blood requests near you</h5>
+                                    {{#each bloodrequests}}
                                     <div class="card bg-light my-1">
                                         <div class="card-body">
-                                            <h5 class="card-title">Request by [REQUESTER] <small class="card-subtitle mb-2 text-muted">06/12/2018 8:51pm</small></h5>
-                                            <p class="card-text"> At <i class="fa fa-map-marker"></i>[ADDRESS OF REQUEST]. About [APPROXIMATE TIME] from your registered address.</p>
-                                            <a href="#" class="btn btn-danger btnmessage" id=""><i class="fa fa-info-circle"></i>View request</a>
+                                            <h5 class="card-title">Request by {{User.name}} for {{patientName}} <small class="card-subtitle mb-2 text-muted">{{createdAt}}</small></h5>
+                                            <p class="card-text"> Address at <i class="fa fa-map-marker"></i>{{address}}. Type of donation: {{donationType}}</p>
+                                            <p class="card-text"> Send message: {{User.email}}</p>
                                         </div>
                                     </div>
+                                    {{/each}}
                                 </div>
                             </div>
                         </div>
@@ -63,10 +45,18 @@
                             <div class="row">
                                 <div class="col">
                                     <h5>Your registered requests</h5>
+                                    {{#each user.BloodRequests}}
+                                    <div class="card bg-light my-1">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Request by {{patientName}} <small class="card-subtitle mb-2 text-muted">{{createdAt}}</small></h5>
+                                            <p>Blood type: {{BloodType.name}}</p>
+                                            <p>Type of donation: {{donationType}}</p>
+                                        </div>
+                                    </div>
+                                    {{/each}}
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade show" id="settings" role="tabpanel" aria-labelledby="privacy-tab">settings</div>
                     </div>
                 </div>
             </div>
@@ -123,14 +113,30 @@
 
     <!--Bootstrap js plugins-->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <script src="project-2/public/js/bootstrap3-typeahead.min.js"></script>
+    <script src="/js/bootstrap3-typeahead.min.js"></script>
     <script>
     // Google Maps ---------------------------------------------------------------------------------\
         function initMap() {
             var geocoder = new google.maps.Geocoder;                              // Geocoder object
             var defaultPosition = new google.maps.LatLng(19.432879, -99.133274);  // Default center
             var currentAddress = $("#currentAddress").text();
-            $("#btnFindLocation").on('click',getMyLocation());
+            $("#btnFindLocation").on('click', getMyLocation());
+
+            $("#btnEditAddress").on('click',function(){
+                var address = $("#currentAddress").text().trim();
+                $("#address").val(address);
+                geocoder.geocode({'address': address}, function(results, status) {
+                    if (status === 'OK') {
+                        if (results[0]) {
+                            var pos = results[0].geometry.location;
+                            buildMap(results,pos);
+                        } 
+                        else console.log('Location: No results found');
+                    } 
+                    else console.log('Location: Geocoder failed due to: ' + status);
+                });
+            });
+
             $("#addressForm").submit(function (event) {
                 event.preventDefault();
                 var address = $("#address").val().trim();
