@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+
+    <!--CSS File-->
+    <link rel="stylesheet" href="../public/styles/bloodmap.css" type="text/css">
+    <!--Jquery-->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!--Font family-->
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,600,700" rel="stylesheet">
+    <!--Icons-->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <title>Bloodmap</title>
+</head>
+
+<body>
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-md fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="index.html">
+                <img src="../public/img/bloodmap.png" class="logo-top" width="200">
+            </a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="active">
+                        <a href="#login">LOGIN</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--Hero image-->
+    <div class="jumbotron-profile text-center">
+        <div class="container">
+        </div>
+    </div>
+
+    <!--Main section-->
+    <section class="profile-info">
+        <div class="container">
+            <div class="row justify-content-around">
+                <div class="col-md-9 col-12">
+                    <h3 class="section-heading text-left"> [USER NAME] </h3>
+                    <p class="profile-address" id="currentAddress"><i class="fa fa-map-marker"></i> [USER ADDRESS INFORMATION] <button class="btn-outline-dark btnedit" id="btnEditAddress" data-toggle="modal" data-target="#EditAddress"><i class="fa fa-pencil"></i></button></p>
+                    <p class="profile-address" id="currentEmail">[USER EMAIL]</p>
+                    <h4 class="section-heading text-left"> Info </h4>
+                    <ul class="nav nav-tabs" id="profileInfo" role="tablist">
+                        <li class="nav-item">
+                          <a class="nav-link profiletab active" id="messages-tab" data-toggle="tab" href="#messages" role="tab" aria-controls="messages" aria-selected="true"><i class="fa "></i> Messages</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link profiletab" id="donor-tab" data-toggle="tab" href="#donor" role="tab" aria-controls="donor-info" aria-selected="false"><i class="fa "></i> Donor</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link profiletab" id="request-tab" data-toggle="tab" href="#request" role="tab" aria-controls="requests-info" aria-selected="false"><i class="fa "></i> Requests</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link profiletab" id="settings-tab" data-toggle="tab" href="#settings" role="tab" aria-controls="settings" aria-selected="false"><i class="fa "></i> Settings</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="messages" role="tabpanel" aria-labelledby="messages-tab">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card bg-light my-1">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Bloodmap <small class="card-subtitle mb-2 text-muted">06/12/2018 8:51pm</small></h5>
+                                            <p class="card-text">Welcome to bloodmap! Use our navigation options to browse your donor profile, make a blood request, or adjust your privacy and notification settings. Thank you for your time! - The bloodmap team.</p>
+                                            <a href="#" class="btn btn-danger btnmessage" id=""><i class="fa fa-info-circle"></i> Register as donor</a>
+                                            <a href="#" class="btn btn-danger btnmessage" id=""><i class="fa fa-info-circle"></i> Make a request</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade show" id="donor" role="tabpanel" aria-labelledby="donor-tab">
+                            <div class="row justify-content-center py-1">
+                                <div class="col-8 col-md-4 bg-dark my-2 text-center">
+                                    <p class="py-0 text-white my-auto">Blood Type</p>
+                                </div>
+                                <div class="col-4 col-md-3 bg-light my-2 text-center">
+                                    <p class="py-0 my-auto">O+ <button class="btn-outline-dark btnedit"><i class="fa fa-pencil"></i></button></p>
+                                </div>
+                            </div>
+                            <div class="row py-1">
+                                <div class="col">
+                                    <h5>Blood requests near you</h5>
+                                    <div class="card bg-light my-1">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Request by [REQUESTER] <small class="card-subtitle mb-2 text-muted">06/12/2018 8:51pm</small></h5>
+                                            <p class="card-text"> At <i class="fa fa-map-marker"></i>[ADDRESS OF REQUEST]. About [APPROXIMATE TIME] from your registered address.</p>
+                                            <a href="#" class="btn btn-danger btnmessage" id=""><i class="fa fa-info-circle"></i>View request</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade show" id="request" role="tabpanel" aria-labelledby="request-tab">
+                            <div class="row">
+                                <div class="col">
+                                    <h5>Your registered requests</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade show" id="settings" role="tabpanel" aria-labelledby="privacy-tab">settings</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--Footer-->
+    <footer class="footer" id="footer">
+        <div class="container">
+            <div class="row">
+                <a class="col-md-5" href="index.html">
+                    <img src="../public/img/bloodmap.png" class="logo-top" width="250">
+                </a><br>
+                <div class="col-md-4">
+                    <h5 class="section-heading">POLÍTICA DE PRIVACIDAD</h5>
+                    <h6 class="text-left" id="footer-text">Los datos ingresados en la página son recopilados por
+                        Bloodmap para fines estadísticos y para prestar el servicio.
+                        La publicación de los mismos corre a cargo del usuario y Bloodmap no se hace responsable de
+                        este uso.</h6>
+                </div><br>
+                <div class="col-md-3">
+                    <h5 class="section-heading">CONTACT</h5>
+                    <h6><a href="#">hello@bloodmap.info</a></h6>
+                </div>
+            </div>
+        </div>
+        <h6 class="footer-copyright text-center py-3">© 2018 Bloodmap</h6>
+    </footer>
+
+    <!-- Edit Address Modal -->
+    <div class="modal fade" id="EditAddress" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Enter your address</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col">
+                        <form id="addressForm">
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <div class="input-group mb-3">
+                                        <input id="address" name="address" placeholder="Address (street, number, city, and state)" type="text" required="required" class="form-control">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-dark" style="border:none;border-radius: 50%;" id="btnFindLocation"><i class="fa fa-dot-circle-o"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col">
+                                    <button type="button" class="btn btn-danger" id="btnUpdateAddress" data-toggle="button"
+                                        aria-pressed="false" autocomplete="off">Save Address</button>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-12">
+                                    <p><strong>If your address doesn't apppear in the map, drag the marker to the correct spot.</strong></p>
+                                </div>
+                                <div class="col-12">
+                                    <div id="googleMaps" style="width:100%;height:300px"></div>
+                                </div>
+                            </div>
+                            <input type="hidden" id="latitude" name="latitude">
+                            <input type="hidden" id="longitude" name="longitude">
+                        </form>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <!--Bootstrap js plugins-->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="project-2/public/js/bootstrap3-typeahead.min.js"></script>
+    <script>
+    // Google Maps ---------------------------------------------------------------------------------\
+        function initMap() {
+            var geocoder = new google.maps.Geocoder;                              // Geocoder object
+            var defaultPosition = new google.maps.LatLng(19.432879, -99.133274);  // Default center
+            var currentAddress = $("#currentAddress").text();
+            $("#btnFindLocation").on('click',getMyLocation());
+            $("#addressForm").submit(function (event) {
+                event.preventDefault();
+                var address = $("#address").val().trim();
+                geocoder.geocode({'address': address}, function(results, status) {
+                    if (status === 'OK') {
+                        if (results[0]) {
+                            var pos = results[0].geometry.location;
+                            buildMap(results,pos);
+                        } 
+                        else console.log('Location: No results found');
+                    } 
+                    else console.log('Location: Geocoder failed due to: ' + status);
+                });
+             });
+            $("#btnUpdateAddress").on('click',function(){
+                var address = $("#address").val().trim();
+                $.ajax({
+                method: "PUT",
+                url: "/api/updateAddress",
+                data: address
+                })
+                .then(function() {
+                    window.location.href = "/profile";
+                });
+            });            
+            function getMyLocation(){
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(
+                        function(position) {
+                            var pos = {
+                                lat: position.coords.latitude,
+                                lng: position.coords.longitude
+                            };
+                            geocoder.geocode({'location': pos}, function(results, status) {
+                                if (status === 'OK') {
+                                    if (results[0]) {
+                                        buildMap(results,pos);
+                                    } 
+                                    else console.log('Location: No results found');
+                                } 
+                                else console.log('Location: Geocoder failed due to: ' + status);
+                            });
+                        }, 
+                        function() {
+                            handleLocationError(true, defaultPosition); // Browser supports Geolocation, but none was found
+                        }
+                    );
+                } 
+                else handleLocationError(false, defaultPosition);     // Browser doesn't support Geolocation
+            }
+            
+            function buildMap(results, pos){
+                // Map object
+                var map = new google.maps.Map(document.getElementById("googleMaps"), {
+                    center:pos,
+                    zoom: 18
+                });
+                // Marker object
+                var marker = new google.maps.Marker({
+                    position: pos, map: map
+                });
+                $("#address").val(results[0].formatted_address);
+                map.addListener('center_changed', function () {
+                    relocateMarker(map,marker);
+                });
+                map.addListener('dragend', function () {
+                    geocoder.geocode({'location': map.getCenter()}, function(results, status) {
+                    if (status === 'OK') {
+                        if (results[0]) {
+                            $("#address").val(results[0].formatted_address);         
+                        } 
+                        else console.log('Location: No results found');
+                    } 
+                    else console.log('Location: Geocoder failed due to: ' + status);
+                    });
+                });
+            }
+
+            function relocateMarker(map,marker) {
+                var center = map.getCenter();
+                var latitude = center.lat();
+                var longitude = center.lng();
+                $("#latitude").val(latitude);
+                $("#longitude").val(longitude);
+                marker.setPosition(map.getCenter());
+            }
+        }
+
+        function handleLocationError(browserHasGeolocation, infoWindow, defaultPosition) {
+            // Map object
+            var map = new google.maps.Map(document.getElementById("googleMaps"), {
+                center:defaultPosition,
+                zoom: 12
+            });
+            // Marker object
+            var marker = new google.maps.Marker({
+                position: defaultPosition, map: map
+            });
+            var infoWindow = new google.maps.infoWindow
+            infoWindow.setPosition(defaultPosition);
+            infoWindow.setContent(browserHasGeolocation ?
+                'Cannot pinpoint location, enter an address.':
+                'Location service not available, enter an address.'
+            );
+            infoWindow.open(map, marker);
+        }
+    // Google Maps END---------------------------------------------------------------------------/
+
+    // Autocomplete ----------------------------------------------------------------------------\
+    $(document).ready(function () {
+        $('#address').typeahead({
+            matcher: function () {
+                return true;
+            },
+            updater: function (item) {
+                map.setCenter(new google.maps.LatLng(item.latitude, item.longitude));
+                return item.name;
+            },
+            source: function (address, displayOptions) {
+                if (address.length > 5) {
+                    $.ajax({
+                        url: "/api/geocode",
+                        data: {
+                            address: address
+                        },
+                        dataType: "json",
+                        type: "POST",
+                        success: function (data) {
+                            var results = $.map(data, function (item) {
+                                return {
+                                    latitude: item.geometry.location.lat,
+                                    longitude: item.geometry.location.lng,
+                                    name: item.formatted_address
+                                };
+                            });
+                            displayOptions(results);
+                        }
+                    });
+                }
+            }
+        });
+    });
+    // Autocomplete END ----------------------------------------------------------------------/
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdBjsQYuNeDzxUTGGSVPHD4p4AxaTG-I0&callback=initMap"></script>
+</body>
+</html>

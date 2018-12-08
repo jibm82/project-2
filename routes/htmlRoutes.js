@@ -16,7 +16,7 @@ module.exports = function(app) {
 
   app.get("/login", function(req, res) {
     if (req.user) {
-      res.redirect("/");
+      res.redirect("/profile");
     } else {
       res.render("login");
     }
@@ -24,7 +24,7 @@ module.exports = function(app) {
 
   app.get("/logout", function(req, res) {
     req.logout();
-    res.redirect("/");
+    res.redirect("/profile");
   });
 
   app.get("/signup", function(req, res) {
@@ -43,6 +43,30 @@ module.exports = function(app) {
     } else {
       db.BloodType.findAll({}).then(function(dbBloodmap) {
         res.render("bloodrequest", { bloodTypes: dbBloodmap });
+      });
+    }
+  });
+  
+  app.get("/profile", function(req, res) {
+    if (req.user) {
+      db.User.findOne({
+        where: {
+          email: req.user.email
+        },
+        include: [
+          {
+            model: db.DonorProfile,
+            required: true,
+            include: [{model: db.BloodType}]
+          }
+        ]
+      }).then(function(result){
+        res.render("profile",{userdata: result});
+      });
+    } 
+    else {
+      db.BloodType.findAll({}).then(function(dbBloodmap) {
+        res.render("signup", { bloodTypes: dbBloodmap });
       });
     }
   });
