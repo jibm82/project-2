@@ -3,10 +3,13 @@ var db = require("../models");
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    db.User.count().then(function(usersCount) {
-      res.render("index", {
-        user: req.user,
-        usersCount: usersCount
+    db.DonorProfile.count().then(function(DonorProfileCount) {
+      db.BloodRequest.count().then(function(BloodRequestCount) {
+        res.render("index", {
+          user: req.user,
+          DonorProfileCount: DonorProfileCount,
+          BloodRequestCount: BloodRequestCount
+        });
       });
     });
   });
