@@ -74,10 +74,28 @@ li {
 }
 
 .jumbotron-login {
-  padding-top: 25rem;
+  padding-top: 30rem;
   padding-bottom: calc(10rem - 56px);
-  background-image: url("../img/bloodmap-background-1.jpg");
+  background-image: url("../img/bloodmap-background-4.jpg");
   background-position: center top;
+  background-size: 100%;
+  margin-bottom: 0;
+}
+
+.jumbotron-request {
+  padding-top: 30rem;
+  padding-bottom: calc(10rem - 56px);
+  background-image: url("../img/bloodmap-background-5.jpg");
+  background-position: center right;
+  background-size: cover;
+  margin-bottom: 0;
+}
+
+.jumbotron-makerequest {
+  padding-top: 30rem;
+  padding-bottom: calc(10rem - 56px);
+  background-image: url("../img/bloodmap-background.jpg");
+  background-position: center right;
   background-size: cover;
   margin-bottom: 0;
 }
@@ -221,11 +239,15 @@ footer a:hover {
 
 /*Blood requests*/
 .bloodrequests {
+  padding-bottom: 2em;
   margin-top: 30px;
 }
 
 .bloodrequests .bloodrequest {
-  background: #ccc;
+  background: black;
+  border-radius: 15px;
+  opacity: .9;
+  color: white !important;
   padding: 20px;
   height: 100%;
   text-align: left;
@@ -237,6 +259,7 @@ footer a:hover {
 
 .bloodrequests .bloodrequest a {
   color: #e00314;
+  font-weight: 700;
 }
 
 .bloodrequests .bloodrequest-wrapper {
