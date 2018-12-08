@@ -13,7 +13,14 @@
                 <p>Bloodmap is a country-wide database where patients that are urgently looking for blood, as well as
                     active blood donating
                     campaigns can have access to our data and connect with the registered blood donors in their
-                    vicinity.</p><br>
+                    vicinity.</p>
+                <p>
+                    <a class="btn btn-danger" href="/bloodrequests" data-toggle="button" aria-pressed="false"
+                        autocomplete="off">
+                        VIEW CURRENT REQUESTS
+                    </a>
+                </p>
+                <br>
                 <h3 class="section-heading">HOW DOES IS IT WORK?</h3>
                 <p>Active <strong>blood donors</strong> have to register and create a profile with some basic
                     information. Based on the User's
@@ -29,10 +36,10 @@
                 <div>
                     <a class="btn btn-danger" href="/signup" id="main-btn" data-toggle="button" aria-pressed="false"
                         autocomplete="off">
-                        BLOOD DONORS
+                        REGISTER AS DONOR
                     </a>
                     <a class="btn btn-danger" href="/bloodrequest" id="main-btn" data-toggle="button" aria-pressed="false"
-                        autocomplete="off">DONATION CAMPAIGN</a>
+                        autocomplete="off">MAKE A REQUEST</a>
                 </div>
             </div>
         </div>
@@ -47,7 +54,7 @@
                 <h5 class="total-users">{{DonorProfileCount}}</h5>
             </div>
             <div class="col-md-6">
-                <h4 class="section-heading">ACTIVE CAMPAIGNS:</h4>
+                <h4 class="section-heading">DONATION REQUESTS:</h4>
                 <h5 class="total-campaigns">{{BloodRequestCount}}</h5>
             </div>
         </div>

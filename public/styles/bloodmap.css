@@ -42,7 +42,7 @@ h2 {
 }
 
 li {
-  padding:10px !important;
+  padding: 10px !important;
   text-transform: uppercase;
 }
 
@@ -128,7 +128,7 @@ li {
 
 /*Footer - bloodmap*/
 footer {
-  background-color:black;
+  background-color: black;
   color: white;
   width: 100%;
   padding: 2em;
@@ -176,4 +176,28 @@ footer a:hover {
   margin: 0px;
   padding: 0px;
   list-style: none;
+}
+
+/*Blood requests*/
+.bloodrequests {
+  margin-top: 30px;
+}
+
+.bloodrequests .bloodrequest {
+  background: #ccc;
+  padding: 20px;
+  height: 100%;
+  text-align: left;
+}
+
+.bloodrequests .bloodrequest h4 {
+  font-size: 1.2em;
+}
+
+.bloodrequests .bloodrequest a {
+  color: #e00314;
+}
+
+.bloodrequests .bloodrequest-wrapper {
+  padding-bottom: 30px;
 }

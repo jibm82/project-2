@@ -37,6 +37,14 @@ module.exports = function(app) {
     }
   });
 
+  app.get("/bloodrequests", function(req, res) {
+    db.BloodRequest.findAll({ include: [db.BloodType, db.User] }).then(function(
+      BloodRequests
+    ) {
+      res.render("bloodrequests", { BloodRequests: BloodRequests });
+    });
+  });
+
   app.get("/bloodrequest", function(req, res) {
     if (req.user) {
       res.redirect("/");

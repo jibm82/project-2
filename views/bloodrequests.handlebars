@@ -1,0 +1,28 @@
+<!--Hero image-->
+<div class="jumbotron-login text-center">
+  <div class="container">
+  </div>
+</div>
+
+<!--Main section-->
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h3 class="section-heading text-center">BLOOD REQUESTS</h3>
+        <div class="row bloodrequests">
+          {{#each BloodRequests}}
+          <div class="col-md-4 bloodrequest-wrapper">
+            <div class="bloodrequest">
+              <h4>Patient: {{patientName}}</h4>
+              <p>{{address}}</p>
+              <p><b>Blood Type: {{BloodType.name}}</b></p>
+              <p>Contact: <a href="mailto:{{User.email}}">{{User.email}}</a></p>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
