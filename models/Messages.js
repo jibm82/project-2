@@ -7,7 +7,6 @@ module.exports = function(sequelize, DataTypes) {
 
   Messages.associate = function(models) {
     Messages.belongsTo(models.User);
-    Messages.hasOne(models.DonorProfile);
     Messages.hasOne(models.Request);
   };
   return Messages;
