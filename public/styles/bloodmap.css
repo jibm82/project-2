@@ -82,10 +82,51 @@ li {
   margin-bottom: 0;
 }
 
+.jumbotron-profile {
+    padding-top: 25rem;
+    padding-bottom: calc(10rem - 56px);
+    background-image: url("../img/bloodmap-background-2.jpg");
+    background-position: center top;
+    background-size: cover;
+    margin-bottom: 0;
+}
+
 /*section - services*/
 .services {
   padding: 2em;
 }
+
+/*Profile page*/
+.list-group-item{
+    background-color:darkgray;
+}
+
+.listinfo{
+    color: rgb(54, 54, 54);
+}
+
+.btnedit{
+    border:none;
+    border-radius: 50%;
+}
+
+.nav-link.profiletab{
+    color:black !important;
+}
+
+.nav-link.profiletab:hover{
+    color:red !important;
+}
+
+.nav-link.profiletab.active{
+    color:red !important;
+    background-color: black;
+}
+
+.btnmessage:hover{
+    color:black !important;
+}
+
 #main-btn {
   font-weight: 400;
   padding: 0.45em 1.5em;
