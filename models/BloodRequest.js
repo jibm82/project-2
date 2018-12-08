@@ -32,7 +32,8 @@ module.exports = function(sequelize, DataTypes) {
       // order: ['distance'],
       where: sequelize.and(sequelize.where(distance, { $lte: distance }), {
         BloodTypeId: BloodTypeId
-      }),include: [{all:true}]
+      }),
+      include: [{ all: true }]
     });
   };
 

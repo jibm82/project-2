@@ -53,22 +53,24 @@ module.exports = function(app) {
         where: {
           email: req.user.email
         },
-        include: [{all:true,include: [{all:true}]}]
-      }).then(function(user){
-        if(user.DonorProfile){
+        include: [{ all: true, include: [{ all: true }] }]
+      }).then(function(user) {
+        if (user.DonorProfile) {
           var long = user.DonorProfile.location.coordinates[0];
           var lat = user.DonorProfile.location.coordinates[1];
-          db.BloodRequest.getAround(lat, long, user.DonorProfile.BloodTypeId).then(function(bloodrequests){
-            res.render("profile",{user: user, bloodrequests:bloodrequests});      
+          db.BloodRequest.getAround(
+            lat,
+            long,
+            user.DonorProfile.BloodTypeId
+          ).then(function(bloodrequests) {
+            res.render("profile", { user: user, bloodrequests: bloodrequests });
           });
-        }
-        else {
+        } else {
           console.log(user);
-          res.render("profile",{user: user})
-        };
+          res.render("profile", { user: user });
+        }
       });
-    } 
-    else {
+    } else {
       db.BloodType.findAll({}).then(function(dbBloodmap) {
         res.render("signup", { bloodTypes: dbBloodmap });
       });
