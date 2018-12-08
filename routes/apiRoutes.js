@@ -72,6 +72,18 @@ module.exports = function(app, passport) {
     }
   });
 
+  app.get("/api/nearbydonors/:id", function(req, res) {
+    db.BloodRequest.findById(req.params.id).then(function(BloodRequest) {
+      var long = BloodRequest.location.coordinates[0];
+      var lat = BloodRequest.location.coordinates[1];
+      db.DonorProfile.getAround(lat, long, BloodRequest.BloodTypeId).then(
+        function(donors) {
+          res.json(donors);
+        }
+      );
+    });
+  });
+
   app.post("/api/geocode/", function(req, res) {
     geocoder.geocode(req.body.address, function(results) {
       res.json(results);
